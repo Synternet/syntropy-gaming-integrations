@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Syntropy Stack is a collection of tools and applications that will help you to automatically set up secure, stable, high performance connections between endpoints. These tools can also help you dynamically create connections between your gameservers (Minecraft) and your players (the duelers). This is a simple usecase that can be expanded to usecases such as a self-service platform for customers to order a server that can be securely connected to the players.
+The Syntropy Stack is a collection of tools and applications that will help you to automatically set up secure, stable, high performance connections between endpoints. These tools can also help you dynamically create connections between your gameservers (Minecraft) and your players (the duelers). This is a simple usecase that can be expanded to usecases such as a self-service platform for customers to order a server that can be securely connected to the players. You can read about it more in this [Medium post.](https://medium.com/syntropynet/syntropy-stack-launches-integration-with-minecraft-1860bf22df5d)
 
 ## How-to
 
