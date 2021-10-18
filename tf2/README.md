@@ -15,8 +15,7 @@ The Syntropy Stack is a collection of tools and applications that will help you 
 7. Create a .env file and fill it with your credentials. An example of this is here:
 ```
 DISCORD_BOT_TOKEN='<BOT_TOKEN>`
-SYNTROPY_USERNAME='<SYNTROPY_USERNAME>'
-SYNTROPY_PASSWORD='<SYNTROPY_PASSWORD>'
+SYNTROPY_USERNAME='<SYNTROPY_ACCESS_TOKEN>'
 SRCDS_TOKEN='<SRCDS_TOKEN>'
 ```
 8. Create a virtual environment and install dependencies

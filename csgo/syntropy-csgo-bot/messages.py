@@ -3,7 +3,7 @@ WELCOME_MATCH = """**Welcome to your CSGO pickup game.**
 Input these into your Syntropy Agent configuration to continue:
 
 Syntropy Agent API key: `{api_key}`
-Syntropy Agent Name: `{id}-{name}`
+Syntropy Agent Name: `{name}-{id}`
 """
 
 READY_MATCH = "The CSGO match is ready. Connect to this server to continue: `{ip}`"

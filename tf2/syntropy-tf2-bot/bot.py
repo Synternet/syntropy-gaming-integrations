@@ -10,7 +10,7 @@ from api import ApiManager
 from aioify import aioify
 from discord.ext import commands
 from dotenv import load_dotenv
-
+from syntropy_sdk import AgentsPairObject
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
@@ -21,18 +21,15 @@ CONTAINER_NAME = "syn-tf2"
 
 tf2_lock = asyncio.Lock()
 bot = commands.Bot(command_prefix=PREFIX)
-api_mgr = ApiManager(os.getenv("SYNTROPY_USERNAME"), os.getenv("SYNTROPY_PASSWORD"))
+api_mgr = ApiManager(os.getenv("SYNTROPY_ACCESS_TOKEN"))
 container_manager = ContainerManager(CONTAINER_NAME, NETWORK_NAME, SRCDS_TOKEN)
 
-def get_connection_id(connections, agent_id):
-    return [c["agent_connection_id"] for c in connections if c["agent_1"]["agent_id"] == agent_id or c["agent_2"]["agent_id"] == agent_id][0]
-
-
-def get_subnet_id(services, service_name):
-    service = [s for s in services if s["agent_service_name"] == service_name]
+def get_subnet_id(services, service_name, terraria_agent_id):
+    services = services[0].agent_1.agent_services if services[0].agent_1.agent_id == terraria_agent_id else services[0].agent_2.agent_services
+    service = [s for s in services if s.agent_service_name == service_name]
     if len(service) == 0: return None
     service = service[0]
-    return service["agent_service_subnets"][0]["agent_service_subnet_id"]
+    return service.agent_service_subnets[0].agent_service_subnet_id
 
 
 @aioify
@@ -44,7 +41,7 @@ def start_tf2(ctx, players):
         if api_key == -1:
             api_key = "use the api key bot provided before"
         else:
-            api_key = api_key["api_key_secret"]
+            api_key = api_key.api_key_secret
         asyncio.run_coroutine_threadsafe(
             player.send(
                 f"**Welcome to your Team Fortress 2 server.**\n\nSyntropy Agent API key: `{api_key}` \nSyntropy Agent Name: `{player.name}-{player.id}`\nInput these into your Syntropy Agent configuration to continue"
@@ -61,7 +58,7 @@ def start_tf2(ctx, players):
             endpoints = api_mgr.get_endpoints(players_ids[player])
             if len(endpoints) != 0:
                 endpoint = endpoints[0]
-                if endpoint["agent_is_online"]:
+                if endpoint.agent_is_online:
                     players_endpoints[player] = endpoint
                     break
             if time.time() - start_time > 180:
@@ -73,22 +70,22 @@ def start_tf2(ctx, players):
     print("starting container")
     container = container_manager.start_container()
     ip_addr = container_manager.get_container_ip(container)
-    print("creating syntropynetwork")
-    syn_network = api_mgr.recreate_network("tf2-server")
 
     agent_ids = []
 
     tf2_endpoint = api_mgr.get_endpoints(socket.gethostname())[0]
-    print("creating services")
+
     for player in players:
-        agent_ids.append([players_endpoints[player]["agent_id"], tf2_endpoint["agent_id"]])
+        agent_ids.append(AgentsPairObject(players_endpoints[player].agent_id, tf2_endpoint.agent_id))
     time.sleep(5)
-    connections = api_mgr.add_connections(syn_network["network_id"], agent_ids)
-    print(connections)
+
+    api_mgr.remove_all_connections(tf2_endpoint.agent_id)
+    connections_ids = api_mgr.add_connections(agent_ids, tf2_endpoint.agent_id)
+
     for player in players:
-        connection_id = get_connection_id(connections, players_endpoints[player]["agent_id"])
-        services = api_mgr.get_services([players_endpoints[player]["agent_id"], tf2_endpoint["agent_id"]]) 
-        subnet_id = get_subnet_id(services, "tf2")
+        connection_id = connections_ids[players_endpoints[player].agent_id]
+        services = api_mgr.get_services([connection_id]) 
+        subnet_id = get_subnet_id(services, "tf2", tf2_endpoint.agent_id)
         api_mgr.enable_service(connection_id, subnet_id)
 
     for player in players:
