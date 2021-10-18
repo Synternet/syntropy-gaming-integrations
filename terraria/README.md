@@ -14,20 +14,19 @@ The Syntropy Stack is a collection of tools and applications that will help you 
 6. Create a .env file and fill it with your credentials. An example of this is here:
 ```
 DISCORD_BOT_TOKEN='<BOT_TOKEN>`
-SYNTROPY_USERNAME='<SYNTROPY_USERNAME>'
-SYNTROPY_PASSWORD='<SYNTROPY_PASSWORD>'
+SYNTROPY_ACCESS_TOKEN='<SYNTROPY_ACCESS_TOKEN>'
 ```
-8. Create a virtual environment and install dependencies
+7. Create a virtual environment and install dependencies
 ```
 python3 -m venv venv
 source ./venv/bin/activate
 pip install -r requirements.txt
 ```
-9. Run the Terraria Discord bot by typing in the command: `python3 bot.py`
-10. Run the command `.synterraria start @<player1_name> @<player2_name> @<...>` in your Discord channel (the one where the bot is invited to)
-11. Setup the Syntropy Agent on your machine (where you'll run the Terraria client) using the configuration that the Discord bot DMs you
-12. Connect to the Terraria server with the IP that the bot gives you
-13. Good luck, have fun!
+8. Run the Terraria Discord bot by typing in the command: `python3 bot.py`
+9. Run the command `.synterraria start @<player1_name> @<player2_name> @<...>` in your Discord channel (the one where the bot is invited to)
+10. Setup the Syntropy Agent on your machine (where you'll run the Terraria client) using the configuration that the Discord bot DMs you
+11. Connect to the Terraria server with the IP that the bot gives you
+12. Good luck, have fun!
 
 ## Commands
 Command | Description

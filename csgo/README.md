@@ -17,8 +17,7 @@ the players and the server. This can be expanded and integrated into self-servic
 6. Create a .env file and fill it with your credentials. An example of this is here:
 ```
 DISCORD_BOT_TOKEN='<BOT_TOKEN>`
-SYNTROPY_USERNAME='<SYNTROPY_USERNAME>'
-SYNTROPY_PASSWORD='<SYNTROPY_PASSWORD>'
+SYNTROPY_ACCESS_TOKEN='<SYNTROPY_ACCESS_TOKEN>'
 ```
 8. Create a virtual environment and install dependencies
 ```
