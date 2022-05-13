@@ -1,0 +1,14 @@
+- name: Copy bot source code
+  copy:
+    src: '{{ item }}'
+    dest: /home/ubuntu/bot/
+  with_fileglob:
+    - ../../../../bot/*
+    - ../../../../bot/.*
+
+- name: Installing specidied python requirements
+  pip:
+    requirements: /home/ubuntu/bot/requirements.txt
+
+- name: Run bot script
+  shell: nohup python3 /home/ubuntu/bot/bot.py &

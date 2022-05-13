@@ -1,0 +1,7 @@
+- name: Update apt-get repository and cache
+  apt: update_cache=yes force_apt_get=yes
+
+- name: Upgrade all apt packages
+  apt:
+    name: "*"
+    state: latest

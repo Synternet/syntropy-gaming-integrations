@@ -1,0 +1,4 @@
+discord==1.7.3
+docker==5.0.3
+syntropy-sdk==0.4.0
+python-dotenv==0.20.0

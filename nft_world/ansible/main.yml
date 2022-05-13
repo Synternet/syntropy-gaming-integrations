@@ -1,0 +1,11 @@
+- name: Deploy nft world server
+  hosts: server
+  become: yes
+  become_user: root
+  roles:
+  - general
+  - docker
+  - deploy_agent
+  - deploy_bot
+  vars_files:
+    - vars/main.yml

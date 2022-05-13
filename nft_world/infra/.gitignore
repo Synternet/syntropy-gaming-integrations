@@ -1,0 +1,6 @@
+.terraform/
+.terraform.lock.hcl
+credentials.sec
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfvars
