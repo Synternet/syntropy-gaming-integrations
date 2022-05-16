@@ -4,6 +4,10 @@
 
 The Syntropy Stack is a collection of tools and applications that will help you to automatically set up secure, stable, high performance connections between endpoints. These tools can also help you dynamically create connections between your gameservers (such as NFT World) and your players. This is a simple usecase that can be expanded to usecases such as a self-service platform for customers to order a server that can be securely connected to the players.
 
+## Requirements
+- **Syntropy app**
+- **Minecraft launcher (1.17 version)**
+- **Discord**
 ## How-to
 
 ### 1 Interacting with Discord Bot
