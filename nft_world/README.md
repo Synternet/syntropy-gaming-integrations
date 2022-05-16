@@ -9,9 +9,6 @@ The Syntropy Stack is a collection of tools and applications that will help you 
 - **Minecraft launcher (1.17 version)**
 - **Discord**
 ## How-to
-
-### 1 Interacting with Discord Bot
-
 1. You can type `.help` command in the chat to see all available commands
 
 ![bot](assets/bot.png)
